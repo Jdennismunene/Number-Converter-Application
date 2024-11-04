@@ -1,10 +1,10 @@
 let history = [];
 
 function convertNumber() {
-  const inputNumber = document.getElementById('inputNumber').value;
-  const inputSystem = document.getElementById('inputSystem').value;
-  const outputSystem = document.getElementById('outputSystem').value;
-  const outputElement = document.getElementById('output');
+  let inputNumber = document.getElementById('inputNumber').value;
+  let inputSystem = document.getElementById('inputSystem').value;
+  let outputSystem = document.getElementById('outputSystem').value;
+  let outputElement = document.getElementById('output');
 
   if (!inputNumber) {
     outputElement.textContent = 'Please enter a number.';
@@ -13,6 +13,7 @@ function convertNumber() {
 
   let decimalValue;
 
+  // Convert input number to decimal
   try {
     switch (inputSystem) {
       case 'binary':
@@ -36,6 +37,7 @@ function convertNumber() {
       return;
     }
 
+    // Convert decimal value to output system
     let result;
     switch (outputSystem) {
       case 'binary':
@@ -61,11 +63,15 @@ function convertNumber() {
   }
 }
 
+// Adding the iput and output in the conversion to the history section.
+
 function addToHistory(inputNumber, inputSystem, result, outputSystem) {
   const conversion = `${inputNumber} (${inputSystem}) → ${result} (${outputSystem})`;
   history.push(conversion);
   displayHistory();
 }
+
+// Display the the history conversions
 
 function displayHistory() {
   const historyList = document.getElementById('historyList');
@@ -77,11 +83,14 @@ function displayHistory() {
     historyList.appendChild(listItem);
   });
 }
+// reseting of the inputs and outputs in the system
 
 function resetConverter() {
   document.getElementById('inputNumber').value = '';
   document.getElementById('output').textContent = '';
 }
+
+// Reseting/clearing of all the conversions made in the history section.
 
 function clearHistory() {
   history = [];
